@@ -1,6 +1,6 @@
-"base" {
-	"title" "Air Wars"
+"airwars" {
 	"base" "base"
+	"title" "Air Wars"
 	"maps" "^aw_"
 	"menusystem" "1"
 	"version" "0.1.0"
