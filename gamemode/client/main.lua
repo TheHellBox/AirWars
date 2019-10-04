@@ -1,0 +1,13 @@
+include("options.lua")
+include("crew.lua")
+include("game_state.lua")
+include("timer.lua")
+include("pointshop.lua")
+include("sounds.lua")
+include("player.lua")
+include("props_highlighter.lua")
+
+include("ships/main.lua")
+include("render/main.lua")
+include("gui/main.lua")
+include("spectator_mode/main.lua")

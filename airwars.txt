@@ -1,0 +1,14 @@
+"base" {
+	"title" "Air Wars"
+	"base" "base"
+	"maps" "^aw_"
+	"menusystem" "1"
+	"version" "0.1.0"
+	"author_name" "The HellBox"
+	"author_email" "thehellbox11@gmail.com"
+	"author_url" "https://github.com/TheHellBox"
+	"icon" ""
+	"info" ""
+	"hide" "0"
+	"workshopid"	"1880144111"
+}

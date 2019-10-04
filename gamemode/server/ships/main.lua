@@ -1,0 +1,7 @@
+include("ships.lua")
+include("ship_parts.lua")
+include("ship_builder.lua")
+include("sphere_border.lua")
+include("ship_controls.lua")
+include("physics/main.lua")
+include("weapons/main.lua")
