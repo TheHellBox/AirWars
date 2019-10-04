@@ -1,4 +1,6 @@
-print("cl_init")
+GM.Version = "0.1"
+GM.Name = "Air Wars"
+GM.Author = "The HellBox"
 
 include("enums.lua")
 include("config.lua")
