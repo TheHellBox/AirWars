@@ -84,7 +84,11 @@ net.Receive("aw_send_team_request", function(len, applicant_player)
 	if game_state.state == GAME_STATE_FIGHT then return end
 	local team = aw_teams_list[id]
 	if !team then return end
-
+	if (applicant_player.invite_cooldown or 0) > CurTime() then
+		applicant_player:ChatPrint("Wait 15 seconds")
+		return
+	end
+	applicant_player.invite_cooldown = CurTime() + 15
 	local leader = team.leader
 	local index = table.insert(aw_team_requests, {leader, applicant_player})
 	net.Start("aw_team_request")
@@ -129,6 +133,9 @@ net.Receive("aw_accept_team_request", function(len, ply)
 	if leader ~= ply then return end
 	if !IsValid(target) then return end
 	target:JoinAWTeam(leader:GetAWTeam())
+	if #aw_team_requests > 100 then
+		aw_team_requests = {}
+	end
 end)
 
 hook.Add("PlayerInitialSpawn", "Sync Flags", function(player)

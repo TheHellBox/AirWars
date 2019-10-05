@@ -4,7 +4,7 @@ include("timer.lua")
 
 
 hook.Add("Think", "Check Winners", function()
-	--if true then return end
+	if true then return end
 	if game_state.state != GAME_STATE_FIGHT then return end
 	local winners = {}
 	for k, v in pairs(player.GetAll()) do

@@ -9,7 +9,7 @@ local function IsInWorld( pos )
 end
 
 local function draw_limit_sphere( )
-	if game_state.state != GAME_STATE_FIGHT then return end
+	if game_state_get_state() != GAME_STATE_FIGHT then return end
 	local local_ship = world_ships[LocalPlayer():GetCurrentShip()]
 	local position, angles = Vector(), Angle()
 	if local_ship != nil then
@@ -26,7 +26,7 @@ local function draw_limit_sphere( )
 	view:Translate(position)
 
 	local radius = 32000 * (game_state_get_time_left() / global_config.fight_time)
-	local distance = aw_spectator_camera.position:Distance(Vector())
+	local distance = position:Distance(Vector())
 	if distance > radius * 0.8 then
 		local opacity = (distance - radius * 0.8) / (radius * 0.2)
 		render.SetColorMaterial()
