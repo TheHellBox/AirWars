@@ -14,7 +14,7 @@ hook.Add("Think", "Update timer", function()
 		if game_state.time_left <= 0 then
 			game_state.time_left = 600
 			if game_state.state == GAME_STATE_BUILDING then
-				if table.Count(aw_teams_list) > 0 then
+				if table.Count(aw_teams_list) > 1 then
 					game_state.time_left = global_config.fight_time
 					game_state.state = GAME_STATE_FIGHT
 					AirWars:SpawnShips()
