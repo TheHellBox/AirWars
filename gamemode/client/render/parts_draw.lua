@@ -8,6 +8,12 @@ local function draw(view, prop, ship, player)
 	matrix:Rotate(prop.angle)
 	matrix = view * matrix
 
+	local pos = matrix:GetTranslation()
+	local local_ship = world_ships[LocalPlayer():GetCurrentShip()]
+	if aw_check_in_view(pos) and local_ship and LocalPlayer():GetPos():Distance(pos) > 4000 then
+		return
+	end
+
 	if ship.id == LocalPlayer():GetCurrentShip() then
 		matrix = Matrix()
 		matrix:Translate(prop.position - ship.center)
