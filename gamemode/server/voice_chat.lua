@@ -6,7 +6,7 @@ function GM:PlayerCanHearPlayersVoice(listener, talker)
 			local distance = 1000
 			local ent = talker:GetEntityUnderControl()
 			if IsValid(ent) and ent:GetClass() == "aw_speaker" then
-				distance = distance * 3
+				distance = distance * 6
 			end
 			if listener_ship.position:Distance(talker_ship.position) < distance then
 				return true
