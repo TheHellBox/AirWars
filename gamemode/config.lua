@@ -218,7 +218,8 @@ global_config.categories[CATEGORY_SPECIALS].props = {
 		},
 		entity = "aw_sail",
 		custom_info = {
-			force = 300
+			force = 300,
+			intersection_radius = 50
 		},
 	},
 	{
@@ -231,7 +232,8 @@ global_config.categories[CATEGORY_SPECIALS].props = {
 			cost = 300
 		},
 		custom_info = {
-			lift_force = 200
+			lift_force = 200,
+			intersection_radius = 50
 		},
 	},
 	{
@@ -244,7 +246,8 @@ global_config.categories[CATEGORY_SPECIALS].props = {
 			cost = 600
 		},
 		custom_info = {
-			lift_force = 400
+			lift_force = 400,
+			intersection_radius = 50
 		},
 	},
 	{

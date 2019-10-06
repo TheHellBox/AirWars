@@ -51,6 +51,25 @@ function deepcopy(orig)
     return copy
 end
 
+local function find_close_entities(team)
+	local result = {}
+	for k, a in pairs(ents.FindByClass("aw_building_prop")) do
+		if a:GetAWTeam() != team then continue end
+		if a.custom_info and a.custom_info.intersection_radius then
+			for k, b in pairs(ents.FindByClass("aw_building_prop")) do
+				if b:GetAWTeam() != team then continue end
+				if a == b then continue end
+				if b.entity != a.entity then continue end
+				if !b.custom_info or !b.custom_info.intersection_radius then continue end
+				if b:GetPos():Distance(a:GetPos()) < a.custom_info.intersection_radius then
+					table.insert(result, a)
+				end
+			end
+		end
+	end
+	return result
+end
+
 function find_blocked_entities(team)
 	local center = Vector()
 	local count = 0
@@ -67,5 +86,7 @@ function find_blocked_entities(team)
 			table.insert(result, v)
 		end
 	end
+	local close = find_close_entities(team)
+	table.Add(result, close)
 	return result
 end
