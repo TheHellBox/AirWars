@@ -76,6 +76,8 @@ end )
 
 hook.Add( "HUDPaint", "Draw Controls", function()
 	if !LocalPlayer():IsInControl() then return end
+	local entity_under_control = LocalPlayer():GetNWEntity("aw_entity_under_control")
+	if entity_under_control:GetClass() != "aw_ship_controller" then return end
 	draw_key(10, tips_offset,  "W",  "Forward", false)
 	draw_key(10, tips_offset,  "A",  "Turn Left", false)
 	draw_key(10, tips_offset,  "S",  "Back", false)
@@ -94,6 +96,7 @@ end )
 
 hook.Add( "HUDPaint", "Draw Exit", function()
 	if !LocalPlayer():IsInControl() then return end
+	tips_offset = 10
 	draw_key(10, tips_offset,  "R",  "Exit", false)
 end )
 
