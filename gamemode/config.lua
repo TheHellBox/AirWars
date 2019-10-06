@@ -13,8 +13,8 @@ local function generate_prop_info(weight, health, cost)
 	}
 end
 
-global_config.build_time = 600
-global_config.fight_time = 1200
+global_config.build_time = 420
+global_config.fight_time = 900
 global_config.max_founds = 12000
 global_config.prop_limit = 100
 global_config.world_center = Vector(0, 0, 0)
@@ -190,6 +190,64 @@ global_config.categories[CATEGORY_PROPS].props = {
 			weight = 40,
 			health = 120,
 			cost = 200
+		},
+	},
+
+	// Boxes
+	{
+		model = "models/props_junk/wood_crate001a.mdl",
+		info = {
+			weight = 14,
+			health = 50,
+			cost = 60
+		},
+	},
+	{
+		model = "models/props_junk/wood_crate002a.mdl",
+		info = {
+			weight = 28,
+			health = 80,
+			cost = 120
+		},
+	},
+	{
+		model = "models/props_junk/TrashDumpster01a.mdl",
+		info = {
+			weight = 130,
+			health = 290,
+			cost = 600
+		},
+	},
+	{
+		model = "models/props_c17/furnitureStove001a.mdl",
+		info = {
+			weight = 130,
+			health = 290,
+			cost = 600
+		},
+	},
+	{
+		model = "models/props_interiors/VendingMachineSoda01a.mdl",
+		info = {
+			weight = 110,
+			health = 270,
+			cost = 550
+		},
+	},
+	{
+		model = "models/props_c17/shelfunit01a.mdl",
+		info = {
+			weight = 30,
+			health = 90,
+			cost = 130
+		},
+	},
+	{
+		model = "models/props_trainstation/traincar_seats001.mdl",
+		info = {
+			weight = 90,
+			health = 90,
+			cost = 100
 		},
 	},
 }
