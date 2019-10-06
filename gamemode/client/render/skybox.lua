@@ -40,8 +40,7 @@ local function draw_limit_sphere( )
 end
 
 hook.Add("PreDrawOpaqueRenderables", "AW Draw Skybox", function()
-	-- Do not draw the skybox if player is flying outside the map
-	--if IsInWorld(EyePos()) then return end
+	--if true then return end
 	local view = Matrix()
 	view:Translate(EyePos())
 

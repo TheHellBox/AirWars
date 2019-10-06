@@ -29,7 +29,7 @@ hook.Add("PostDrawOpaqueRenderables", "AW Render", function()
 	if game_state_get_state() != GAME_STATE_FIGHT then return end
 	local view = calculate_view()
 	aw_draw_props(view)
-	aw_draw_effects(view, view)
+	aw_draw_effects(view)
 	aw_draw_particles(view)
 	draw_clouds(view)
 end)

@@ -40,33 +40,32 @@ end
 function draw_trace(projectile, view)
 	if CurTime() > (projectile.tr_update_time or 0) then
 		projectile.prev_positions = projectile.prev_positions or {}
-		local position = projectile.position
-		table.insert(projectile.prev_positions, position)
-		projectile.tr_update_time = CurTime() + 0.01
+		local new_vec = Vector()
+		new_vec:Set(projectile.position)
+		table.insert(projectile.prev_positions, new_vec)
+		projectile.tr_update_time = CurTime() + 0.001
 		if #projectile.prev_positions > 30 then
 			table.remove(projectile.prev_positions, 1)
 		end
 	end
 
-	local prev_position = projectile.prev_positions[1]
+	local prev_matrix = nil
 	for k, position in ipairs(projectile.prev_positions) do
 		local matrix = Matrix()
 		matrix:Translate(position)
 		matrix = view * matrix
-
-		local matrix_prev = Matrix()
-		matrix_prev:Translate(prev_position)
-		matrix_prev = view * matrix_prev
-
+		if prev_matrix == nil then
+			prev_matrix = matrix
+		end
 		render.SetMaterial(trace_material)
-		render.DrawBeam(matrix_prev:GetTranslation(), matrix:GetTranslation(), k / 2, 0, 1, Color(255, 255, 255, k * 10))
-		prev_position = position
+		render.DrawBeam(prev_matrix:GetTranslation(), matrix:GetTranslation(), k / 2, 0, 1, Color(255, 255, 255, k * 10))
+		prev_matrix = matrix
 	end
 end
 
 function aw_draw_effects(view, view_raw)
 	for key, projectile in pairs(projectiles) do
-		draw_trace(projectile, view_raw)
+		draw_trace(projectile, view)
 		draw_projectile(projectile, view)
 	end
 end
