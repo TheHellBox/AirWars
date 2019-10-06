@@ -166,7 +166,7 @@ function addcslua_r(dir)
 end
 
 function GM:PlayerNoClip()
-	if game_state.state == GAME_STATE_FIGHT then return false end
+	if game_state.state == GAME_STATE_FIGHT then return true end
 	return true
 end
 
@@ -182,17 +182,13 @@ function GM:GetFallDamage( ply, speed )
 	return 0
 end
 
-function GM:PlayerCanHearPlayersVoice(listener, talker)
-	if listener:GetCurrentShip() == talker:GetCurrentShip() then
-		return true
-	else
-		return false
-	end
-end
-
 function GM:PlayerDisconnected( ply )
 	 aw_leave_from_team(ply)
 end
+
+hook.Add("Initialize", "Disable Voice Icon", function()
+	RunConsoleCommand("mp_show_voice_icons", "0")
+end)
 
 addcslua_r("airwars/gamemode/client")
 addcslua_r("airwars/gamemode/shared")

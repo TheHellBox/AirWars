@@ -328,6 +328,16 @@ global_config.categories[CATEGORY_SPECIALS].props = {
 			cost = 300
 		},
 	},
+	{
+		name = "Speaker",
+		model = "models/aw_speaker/aw_speaker.mdl",
+		entity = "aw_speaker",
+		info = {
+			weight = 20,
+			health = 20,
+			cost = 200
+		},
+	},
 }
 global_config.categories[CATEGORY_WEAPONS] = {}
 global_config.categories[CATEGORY_WEAPONS].name = "Weapons"

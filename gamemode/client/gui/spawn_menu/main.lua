@@ -56,7 +56,7 @@ function GM:OnSpawnMenuOpen()
 
 	if !IsValid(spawn_menu_frame) then
 		local frame = vgui.Create("AWSMFrame")
-		frame:SetSize(486, 512)
+		frame:SetSize(510, 512)
 		frame:Center()
 		frame:ShowCloseButton(false)
 		frame:SetScreenLock(true)

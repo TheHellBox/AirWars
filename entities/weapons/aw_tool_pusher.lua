@@ -23,7 +23,7 @@ end
 function SWEP:SecondaryAttack()
 	if SERVER then
 		local amount = self:GetVariable("amount", 0)
-		local trace = self.Owner:GetEyeTraceNoCursor()
+		local trace = self:MakeTrace()
 		if IsValid(trace.Entity) then
 			local pos = trace.Entity:GetPos()
 			trace.Entity:SetPos(pos + trace.HitNormal * amount)
