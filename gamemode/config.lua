@@ -283,7 +283,7 @@ global_config.categories[CATEGORY_WEAPONS].props = {
 		},
 		custom_info = {
 			damage = 60,
-			speed = 1500,
+			speed = 2000,
 			gravity = 3,
 			splash_radius = 70,
 			effect_type = EFFECT_TYPE_CANNON
@@ -320,7 +320,7 @@ global_config.categories[CATEGORY_WEAPONS].props = {
 		custom_info = {
 			damage = 100,
 			speed = 0,
-			gravity = 2,
+			gravity = 4,
 			splash_radius = 200,
 			effect_type = EFFECT_TYPE_BOMB
 		},

@@ -56,6 +56,7 @@ function meta:GetDataValue(value_name)
 end
 
 function meta:SetDataValue(value_name, value)
+	if !self.player_data then return nil end
 	self.player_data[value_name] = value
 	self:SaveData()
 end

@@ -41,7 +41,7 @@ net.Receive("aw_play_weapon_effect", function()
 		add_particle(bullet_position, "particles/smokey", 10, 20, 0, 1, 10, angle:Forward(), 0.3, 60)
 
 	elseif effect_type == EFFECT_TYPE_BOMB then
-		projectile.gravity = 2
+		projectile.gravity = 4
 		projectile.model = "models/aw_bomb/aw_bomb_bullet.mdl"
 		table.insert(projectiles, projectile)
 
