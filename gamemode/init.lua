@@ -166,7 +166,7 @@ function addcslua_r(dir)
 end
 
 function GM:PlayerNoClip()
-	if game_state.state == GAME_STATE_FIGHT then return true end
+	if game_state.state == GAME_STATE_FIGHT then return aw_developer end
 	return true
 end
 
