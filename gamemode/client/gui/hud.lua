@@ -72,6 +72,10 @@ hook.Add( "HUDPaint", "Draw HUD", function()
 	local health = LocalPlayer():Health() / LocalPlayer():GetMaxHealth()
 	draw.RoundedBox( 4, padding_x, padding_y - 60, 304, 24, Color(102, 32, 20) )
 	draw.RoundedBox( 4, padding_x + 2, padding_y - 58, 300 * health, 20, Color(204, 65, 37) )
+
+	if height < 5 then
+		draw.SimpleTextOutlined( "Your height is too low. Place more ballons", "aw_hud_main", padding_x, padding_y - 230, Color(255, 0, 0), TEXT_ALIGN_LEFT, TEXT_ALIGN_TOP, 1)
+	end
 end )
 
 hook.Add( "HUDPaint", "Draw Controls", function()

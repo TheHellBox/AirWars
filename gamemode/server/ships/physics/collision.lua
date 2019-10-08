@@ -32,12 +32,14 @@ col_next_update_time = CurTime()
 // Collision detection is REALLY expensive.
 hook.Add("Think", "Check Collisions", function()
 	if CurTime() < col_next_update_time then return end
-	col_next_update_time = CurTime() + 0.3
+	col_next_update_time = CurTime() + 0.5
 
 	for _, ship in pairs(world_ships) do
 		for _, other_ship in pairs(world_ships) do
 			if ship == other_ship then continue end
-			if ship.position:Distance(other_ship.position) > ship.max:Length() / 2 then continue end
+			local len = ship.max:Length() / 2
+			if ship.position:DistToSqr(other_ship.position) > math.pow(len, 2) then continue end
+			print("check")
 			for _, part in pairs(ship.parts) do
 				local hit, hit_part, hit_pos = check_collision(ship, other_ship, part)
 				if hit then
