@@ -291,7 +291,8 @@ global_config.categories[CATEGORY_SPECIALS].props = {
 		},
 		custom_info = {
 			lift_force = 200,
-			intersection_radius = 50
+			intersection_radius = 50,
+			ram_damage_mod = 2
 		},
 	},
 	{
@@ -305,7 +306,8 @@ global_config.categories[CATEGORY_SPECIALS].props = {
 		},
 		custom_info = {
 			lift_force = 400,
-			intersection_radius = 50
+			intersection_radius = 50,
+			ram_damage_mod = 2
 		},
 	},
 	{

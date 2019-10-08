@@ -39,15 +39,16 @@ hook.Add("Think", "Check Collisions", function()
 			if ship == other_ship then continue end
 			local len = ship.max:Length() / 2
 			if ship.position:DistToSqr(other_ship.position) > math.pow(len, 2) then continue end
-			print("check")
 			for _, part in pairs(ship.parts) do
 				local hit, hit_part, hit_pos = check_collision(ship, other_ship, part)
 				if hit then
 					local mass_a = calculate_ship_weight(ship.id)
 					local mass_b = calculate_ship_weight(other_ship.id)
 
-					local damage_a = -math.Clamp(ship.speed / 4, 0, math.Clamp(hit_part.health, 0, math.huge))
-					local damage_b = -math.Clamp(ship.speed / 4, 0, math.Clamp(part.health, 0, math.huge))
+					local damage_mod_a = (part.custom_info or {}).ram_damage_mod or 1
+					local damage_mod_b = (hit_part.custom_info or {}).ram_damage_mod or 1
+					local damage_a = -math.Clamp(ship.speed / 4 * damage_mod_a, 0, math.Clamp(hit_part.health, 0, math.huge))
+					local damage_b = -math.Clamp(ship.speed / 4 * damage_mod_a, 0, math.Clamp(part.health, 0, math.huge))
 
 					local mass_sum = (mass_a + mass_b)
 					local mass_dif_a = (mass_a - mass_b)
