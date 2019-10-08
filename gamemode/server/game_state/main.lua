@@ -13,6 +13,7 @@ hook.Add("Think", "Check Winners", function()
 		table.insert(winners[v:GetAWTeam()], v)
 	end
 	if table.Count(winners) <= 1 then
+		AirWars:ResetRound()
 		for _, ply in pairs(player.GetAll()) do
 			ply:AddPoints(2)
 			ply:ChatPrint("You got 2 points for playing")
@@ -29,6 +30,5 @@ hook.Add("Think", "Check Winners", function()
 				winner:ChatPrint("You got 10 points for winning this round")
 			end
 		end
-		AirWars:ResetRound()
 	end
 end)
