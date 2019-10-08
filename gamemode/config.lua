@@ -5,14 +5,6 @@ CATEGORY_SPECIALS = 2
 CATEGORY_WEAPONS = 3
 CATEGORY_FLAGS = 4
 
-local function generate_prop_info(weight, health, cost)
-	return {
-		weight = weight,
-		health = health,
-		cost = cost
-	}
-end
-
 global_config.build_time = 420
 global_config.fight_time = 900
 global_config.max_founds = 12000

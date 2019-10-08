@@ -1,7 +1,8 @@
 if !game_state then
 	game_state = {
 		time_left = global_config.build_time,
-		state = GAME_STATE_BUILDING
+		state = GAME_STATE_BUILDING,
+		skybox_id = 1
 	}
 end
 
@@ -9,7 +10,8 @@ local function gen_state_table()
 	local state = {
 		time_left = game_state.time_left,
 		state = game_state.state,
-		teams = aw_teams_list
+		teams = aw_teams_list,
+		skybox_id = game_state.skybox_id
 	}
 	return state
 end
@@ -75,7 +77,6 @@ function AirWars:ResetRound()
 	world_ships = {}
 	game_state.state = GAME_STATE_BUILDING
 	game_state.time_left = global_config.build_time
-
 	AirWars:BroadcastGameState()
 
 	net.Start("aw_round_reset")

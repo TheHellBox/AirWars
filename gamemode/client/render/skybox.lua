@@ -1,4 +1,3 @@
-local skybox_material = Material("aw_materials/skybox/skybox_01.png", "smooth")
 local water_material = Material("aw_materials/water.png", "smooth noclamp")
 
 local function IsInWorld( pos )
@@ -41,6 +40,7 @@ end
 
 hook.Add("PreDrawOpaqueRenderables", "AW Draw Skybox", function()
 	--if true then return end
+	local skybox_material = aw_skyboxes[game_state.skybox_id or 1].material
 	local view = Matrix()
 	view:Translate(EyePos())
 
@@ -78,20 +78,20 @@ hook.Add("PreDrawOpaqueRenderables", "AW Draw Skybox", function()
 	local x, y = ship_position.x / 20000 % 1, -ship_position.y / 20000 % 1
 	local time = (CurTime() / 1000)
 
-	surface.SetDrawColor( Color(255, 255, 255, 60) )
+	local brightness = aw_skyboxes[game_state.skybox_id or 1].brightness or 1
+	surface.SetDrawColor( Color(255 * brightness, 255 * brightness, 255 * brightness, 60) )
 	surface.SetMaterial(water_material)
 
 	cam.Start3D2D( matrix:GetTranslation(), view:GetAngles(), 100 )
 		surface.DrawTexturedRectUV( -1000, -1000, 2000, 2000, x, y, x + 10, y + 10 )
 	cam.End3D2D()
 
+	surface.SetDrawColor(Color(255 * brightness, 255 * brightness, 255 * brightness, 30))
 	cam.Start3D2D( matrix:GetTranslation() + Vector(0, 0, 10), view:GetAngles(), 100 )
-		surface.SetDrawColor(Color(255, 255, 255, 30))
 		surface.DrawTexturedRectUV( -1000, -1000, 2000, 2000, x * 10 + time * 10, y * 10 + time * 10, x + 100 + time * 10, y + 100 + time * 10)
 	cam.End3D2D()
 
 	cam.Start3D2D( matrix:GetTranslation() + Vector(0, 0, 20), view:GetAngles(), 100 )
-		surface.SetDrawColor(Color(255, 255, 255, 30))
 		surface.DrawTexturedRectUV( -1000, -1000, 2000, 2000, x - time, y - time, x + 10 - time, y + 10 - time)
 	cam.End3D2D()
 end)

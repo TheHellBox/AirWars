@@ -29,10 +29,6 @@ local function setup_part(entity, ship)
 	base.info = entity.info
 	base.health = entity.info.health
 	ship:AddPart(base)
-
-	if base.entity == "aw_engine" then
-		print(base.health)
-	end
 end
 
 local function create_ships()

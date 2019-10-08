@@ -2,6 +2,11 @@ local clouds_mesh = clouds_mesh or Mesh()
 local cloud_material = Material("particles/smokey")
 
 function spawn_clouds()
+	if IsValid(clouds_mesh) then
+		clouds_mesh:Destroy()
+	end
+	clouds_mesh = Mesh()
+	local brightness = aw_skyboxes[game_state.skybox_id].brightness or 1
 	local vertices = {}
 	for k=1, 30 do
 		local seed = 115
@@ -36,7 +41,7 @@ function spawn_clouds()
 
 			for _, vec in pairs(vecs) do
 				table.insert(vertices, {
-					color = Color(255, 255, 255, 10),
+					color = Color(255 * brightness, 255 * brightness, 255 * brightness, 10 + 50 * (1 - brightness)),
 					normal = angle:Forward(),
 					pos = LocalToWorld( (vec - Vector(0.5, 0.5)) * 6000, Angle(), position + rnd_position, angle ),
 					u = vec.x,
@@ -60,5 +65,4 @@ function draw_clouds(view)
 		end
 	cam.PopModelMatrix()
 end
-
 spawn_clouds()

@@ -172,8 +172,6 @@ net.Receive("aw_sync_parts", function(len, player)
 	if parts ~= nil then
 		local parts = util.Compress( parts )
 		local len = #parts
-		print("Sync", len)
-
 		if len > 63000 then
 			player:ChatPrint("Oups! Something went wrong. Your ship seems to be too big and server cannot sync it ):")
 			print("Ship is too big!")

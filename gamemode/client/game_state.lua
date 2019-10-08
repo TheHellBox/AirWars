@@ -3,12 +3,17 @@ if !game_state then
 		time_left = 999,
 		state = 0,
 		team_name = "",
+		skybox_id = 1,
 		teams = {}
 	}
 end
 
 net.Receive("aw_sync_game_state", function()
+	local prev = game_state.skybox_id
 	game_state = net.ReadTable()
+	if game_state.skybox_id != prev then
+		spawn_clouds()
+	end
 end)
 
 net.Receive("aw_round_reset", function()

@@ -74,10 +74,12 @@ hook.Add( "HUDPaint", "Draw HUD", function()
 	draw.RoundedBox( 4, padding_x + 2, padding_y - 58, 300 * health, 20, Color(204, 65, 37) )
 
 	if height < 5 then
-		draw.SimpleTextOutlined( "Your height is too low. Place more ballons", "aw_hud_main", padding_x, padding_y - 230, Color(255, 0, 0), TEXT_ALIGN_LEFT, TEXT_ALIGN_TOP, 1)
+		if game_state_get_state() != GAME_STATE_FIGHT then
+			draw.SimpleTextOutlined( "Your height is too low. Place more balloons", "aw_hud_main", padding_x, padding_y - 230, Color(255, 0, 0), TEXT_ALIGN_LEFT, TEXT_ALIGN_TOP, 1)
+		end
 	end
 end )
-
+ 
 hook.Add( "HUDPaint", "Draw Controls", function()
 	if !LocalPlayer():IsInControl() then return end
 	local entity_under_control = LocalPlayer():GetNWEntity("aw_entity_under_control")

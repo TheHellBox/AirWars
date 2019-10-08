@@ -1,5 +1,16 @@
-include("effects/main.lua")
+aw_skyboxes = {
+	[1] = {
+		material = Material("aw_materials/skybox/skybox_01.png", "smooth"),
+		brightness = 1
+	},
+	[2] = {
+		material = Material("aw_materials/skybox/skybox_02.png", ""),
+		brightness = 0.1
+	}
+}
+game_state.skybox_id = 1
 
+include("effects/main.lua")
 include("parts_draw.lua")
 include("skybox.lua")
 include("clouds.lua")
@@ -27,9 +38,13 @@ end
 
 hook.Add("PostDrawOpaqueRenderables", "AW Render", function()
 	if game_state_get_state() != GAME_STATE_FIGHT then return end
+	local brightness = aw_skyboxes[game_state.skybox_id].brightness or 1
+	render.SuppressEngineLighting( true )
+	render.ResetModelLighting( brightness, brightness, brightness )
 	local view = calculate_view()
 	aw_draw_props(view)
 	aw_draw_effects(view)
 	aw_draw_particles(view)
 	draw_clouds(view)
+	render.SuppressEngineLighting( false )
 end)
