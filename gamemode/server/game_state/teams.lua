@@ -34,13 +34,6 @@ function aw_leave_from_team(member)
 	end
 end
 
-function player_meta:SetAWTeam(team)
-	self:SetCurrentShip(team)
-	self:SetNWInt("aw_team", team)
-	self.aw_team = team or -1
-	AirWars:BroadcastGameState()
-end
-
 function player_meta:SetLeader()
 	self:SetNWInt("aw_leader", true)
 end

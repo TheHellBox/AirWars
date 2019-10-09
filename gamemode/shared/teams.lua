@@ -11,13 +11,6 @@ function get_team_members(team_id)
 	return result
 end
 
-function player_meta:GetAWTeam()
-	if CLIENT then
-		return self:GetNWInt("aw_team", -1)
-	end
-	return self.aw_team or -1
-end
-
 function entity_meta:AWIsInTeam(team)
 	if !self.GetAWTeam then return 0 end
 	local self_team = self:GetAWTeam()
