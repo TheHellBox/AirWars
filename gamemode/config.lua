@@ -8,10 +8,9 @@ CATEGORY_FLAGS = 4
 global_config.build_time = 420
 global_config.fight_time = 900
 global_config.max_founds = 12000
-global_config.prop_limit = 100
+global_config.prop_limit = 60
 global_config.world_center = Vector(0, 0, 0)
 global_config.position_sync_rate = 0.1
-global_config.disable_crew_sync = fals
 
 global_config.build_bounds = {
 	max = Vector(1264, -2355, 1168),

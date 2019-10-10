@@ -38,18 +38,23 @@ function meta:AWHasAmmo()
 end
 
 local function check_player_ship_collisions()
+	local players = player.GetAll()
 	for _, ship in pairs(world_ships) do
 		local view = Matrix()
 		view:Translate(global_config.world_center)
 		view:Rotate(-ship.angles)
 		view:Translate(-ship.position)
 
-		for key, player in pairs(player.GetAll()) do
+		for key, player in pairs(players) do
 			if ship.id == player:GetCurrentShip() then continue end
+			if player:IsSpectator() then continue end
 
 			local players_ship = world_ships[player:GetCurrentShip()]
 			if players_ship == nil then continue end
 			if player:IsSpectator() then continue end
+			if players_ship.position:Distance(ship.position) > 2000 then
+				continue
+			end
 
 			local player_matrix = Matrix()
 			player_matrix:Translate(players_ship.position)

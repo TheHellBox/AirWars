@@ -1,19 +1,20 @@
 hook.Add("ShouldCollide", "disable_prop_collisions", function(entity_a, entity_b )
-	if entity_a.stuck or entity_b.stuck then
+	if !entity_a.GetAWTeam or !entity_b.GetAWTeam then return end
+
+	local a_is_player = entity_a:IsPlayer()
+	local b_is_player = entity_b:IsPlayer()
+
+	if a_is_player and entity_a:IsSpectator() then
+		return false
+	elseif b_is_player and entity_b:IsSpectator() then
 		return false
 	end
-	if entity_a:IsPlayer() and entity_a:IsSpectator() then
-		return false
-	elseif entity_b:IsPlayer() and entity_b:IsSpectator() then
+	if a_is_player && b_is_player then
 		return false
 	end
-	if entity_a:IsPlayer() && entity_b:IsPlayer() then
-		return false
-	end
-	if !(entity_b.GetAWTeam && entity_a.GetAWTeam) then return end
-	if entity_a:IsPlayer() && entity_b:GetAWTeam() then
+	if a_is_player then
 		return entity_a:GetCurrentShip() == entity_b:GetAWTeam()
-	elseif entity_a:GetAWTeam() && entity_b:IsPlayer() then
+	elseif b_is_player then
 		return entity_b:GetCurrentShip() == entity_a:GetAWTeam()
 	end
 end)

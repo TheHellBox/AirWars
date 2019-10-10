@@ -6,5 +6,5 @@ ENT.Spawnable = false
 function ENT:SetupDataTables()
 	self:NetworkVar( "Int", 0, "Category" )
 	self:NetworkVar( "Int", 1, "Prop" )
-	self:NetworkVar( "Int", 2, "AWTeam" )
+	self:NetworkVar( "Int", 2, "AWTeamRaw" )
 end
