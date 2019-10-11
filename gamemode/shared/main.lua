@@ -1,7 +1,7 @@
+include("player.lua")
 include("props_collision.lua")
 include("teams.lua")
 include("entity.lua")
-include("player.lua")
 include("noclip.lua")
 include("crew.lua")
 include("founds.lua")

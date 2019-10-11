@@ -111,6 +111,10 @@ net.Receive("aw_update_flag", function(len, player)
 	local len = net.ReadInt(32)
 	for k=0, len do
 		table.insert(data, net.ReadInt(5))
+		local _, left = net.BytesLeft()
+		if left <= 1 then
+			break
+		end
 	end
 	aw_team_flags[player:GetCurrentShip()] = data
 	AirWars:SyncFlag(player:GetCurrentShip())

@@ -126,6 +126,8 @@ function GM:PlayerSpawn(player)
 end
 
 function GM:PlayerInitialSpawn(player)
+	player_manager.SetPlayerClass( player, "player_class" )
+	player_manager.RunClass( player, "SetupDataTables" )
 	player:CreateAWTeam(AirWars:GenerateTeamId())
 	for k, v in pairs(world_ships) do
 		v:SyncToPlayer(player)
