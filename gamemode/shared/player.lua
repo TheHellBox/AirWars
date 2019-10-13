@@ -23,6 +23,7 @@ end
 function meta:SetCurrentShip(ship)
 	self:SetCurrentShipRaw(ship)
 	self.current_ship = ship
+	hook.Run("AirWars_PlayerChangedShip", self, ship)
 end
 
 function meta:SetSpectator(is_spectator)

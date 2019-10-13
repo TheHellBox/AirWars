@@ -1,6 +1,9 @@
 if !clientside_models then
 	clientside_models = {}
 end
+if !aw_parts_ents then
+	aw_parts_ents = {}
+end
 
 function try_load_model(model)
 	print(model)

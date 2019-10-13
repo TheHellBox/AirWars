@@ -7,7 +7,7 @@ CATEGORY_FLAGS = 4
 
 global_config.build_time = 420
 global_config.fight_time = 900
-global_config.max_founds = 12000
+global_config.max_founds = 16000
 global_config.prop_limit = 60
 global_config.world_center = Vector(0, 0, 0)
 global_config.position_sync_rate = 0.1
@@ -346,7 +346,7 @@ global_config.categories[CATEGORY_WEAPONS].props = {
 			cost = 500
 		},
 		custom_info = {
-			damage = 60,
+			damage = 80,
 			speed = 2000,
 			gravity = 3,
 			splash_radius = 70,
@@ -373,6 +373,24 @@ global_config.categories[CATEGORY_WEAPONS].props = {
 		category = CATEGORY_WEAPONS
 	},
 	{
+		name = "Grappling Hook",
+		model = "models/aw_hook/aw_hook_full.mdl",
+		entity = "aw_weapon_hook",
+		info = {
+			weight = 20,
+			health = 50,
+			cost = 500
+		},
+		custom_info = {
+			damage = 10,
+			speed = 200,
+			gravity = 1,
+			splash_radius = 1,
+			effect_type = EFFECT_TYPE_HOOK
+		},
+		category = CATEGORY_WEAPONS
+	},
+	{
 		name = "Bomb",
 		model = "models/aw_bomb/aw_bomb.mdl",
 		entity = "aw_weapon_bomb",
@@ -382,7 +400,7 @@ global_config.categories[CATEGORY_WEAPONS].props = {
 			cost = 400
 		},
 		custom_info = {
-			damage = 100,
+			damage = 200,
 			speed = 0,
 			gravity = 4,
 			splash_radius = 200,

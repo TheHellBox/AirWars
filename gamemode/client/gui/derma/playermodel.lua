@@ -26,7 +26,7 @@ function PANEL:Paint(w, h)
 
 	cam.Start3D( camera_pos, (model_pos - camera_pos):Angle(), 40, x, y, w, h, 5, 10000 )
 		self.entity:SetSequence( self.entity:LookupSequence( "menu_walk" ) )
-		self.entity:SetCycle(CurTime())
+		self.entity:SetCycle(CurTime() % 1)
 		self.entity:SetAngles(Angle(0, (CurTime() * 25) % 360 , 0))
 		self.entity:DrawModel()
 

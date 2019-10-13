@@ -11,6 +11,7 @@ function AirWars:StartRound()
 	game_state.skybox_id = math.floor(math.Rand(1, 3))
 	AirWars:SpawnShips()
 	AirWars:BroadcastGameState()
+	hook.Run("AirWars_RoundStart")
 end
 
 hook.Add("Think", "Update timer", function()

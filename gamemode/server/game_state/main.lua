@@ -30,5 +30,6 @@ hook.Add("Think", "Check Winners", function()
 				winner:ChatPrint("You got 10 points for winning this round")
 			end
 		end
+		hook.Run("AirWars_RoundEnd", winners)
 	end
 end)

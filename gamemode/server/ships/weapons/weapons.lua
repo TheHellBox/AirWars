@@ -2,7 +2,10 @@ local function play_effect(position, angle, bullet, weapon, ship)
 	net.Start("aw_play_weapon_effect", false)
 	net.WriteInt(weapon.custom_info.effect_type, 8)
 	net.WriteInt(weapon.custom_info.speed, 16)
+	net.WriteInt(weapon.custom_info.gravity, 8)
 	net.WriteInt(bullet.id, 16)
+	net.WriteInt(bullet.weapon, 32)
+	net.WriteInt(bullet.ship, 16)
 	net.WriteVector(bullet.position)
 	net.WriteAngle(angle)
 	net.WriteVector(ship.velocity)
@@ -10,7 +13,7 @@ local function play_effect(position, angle, bullet, weapon, ship)
 end
 
 -- NOTE: Weapon is just a part
-function AirWars:ShipShoot(ship, weapon, offset, angle)
+function AirWars:ShipShoot(ship, weapon, offset, angle, weapon_ent)
 	local end_pos = Vector()
 	local angle = angle or Angle()
 	local offset = offset or 0
@@ -23,7 +26,8 @@ function AirWars:ShipShoot(ship, weapon, offset, angle)
 		bullet_position,
 		bullet_angle,
 		weapon,
-		ship.velocity
+		ship.velocity,
+		weapon_ent
 	)
 	play_effect(bullet_position, bullet_angle, bullet, weapon, ship)
 end

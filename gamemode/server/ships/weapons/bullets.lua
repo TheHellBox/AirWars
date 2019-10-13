@@ -14,20 +14,22 @@ function calculate_bullet_start(ship, position, angle)
 	return matrix:GetTranslation(), matrix:GetAngles()
 end
 
-function add_bullet(position, direction, weapon, velocity)
+function add_bullet(position, direction, weapon, velocity, weapon_ent)
 	local speed = weapon.custom_info.speed
 	local damage = weapon.custom_info.damage
 	local gravity = weapon.custom_info.gravity
 	local ignore = {weapon.id}
 	local effect_type = weapon.custom_info.effect_type
 	local splash_radius = weapon.custom_info.splash_radius
-
 	local bullet = {
 		position = position,
 		direction = direction,
 		speed = speed,
 		damage = damage,
 		ignore = ignore,
+		weapon = weapon.id,
+		weapon_ent = weapon_ent,
+		ship = weapon.aw_team,
 		gravity = gravity,
 		velocity = velocity,
 		fall_speed = Vector(),
@@ -51,11 +53,12 @@ local function find_close_parts(position, ship, radius)
 	return list
 end
 
-local function send_hit(bullet)
+local function send_hit(bullet, ship_id, position)
 	net.Start("aw_bullet_hit")
 	net.WriteInt(bullet.id, 16)
 	net.WriteInt(bullet.effect_type, 8)
-	net.WriteVector(bullet.position)
+	net.WriteInt(ship_id, 16)
+	net.WriteVector(position or bullet.position)
 	net.Broadcast()
 end
 
@@ -92,12 +95,13 @@ local function check_bullets_collision()
 							local distance = hit_part.position:Distance(part.position)
 							part:AddHealth(-bullet.damage * ((bullet.splash_radius - distance) / bullet.splash_radius))
 						end
-						send_hit(bullet)
 					end
 				end
 				if tr.Entity:IsPlayer() then
 					tr.Entity:TakeDamage(bullet.damage * 3, game.GetWorld(), game.GetWorld())
 				end
+				send_hit(bullet, ship.id)
+				hook.Run("AirWars_BulletHit", tr.Entity, bullet, ship)
 				table.remove(aw_bullets, key)
 			end
 		end

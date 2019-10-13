@@ -1,5 +1,14 @@
 include("shared.lua")
 
+function ENT:Initialize()
+	local team = self:GetAWTeam()
+	if !aw_parts_ents[team] then
+		aw_parts_ents[team] = {}
+	end
+	aw_parts_ents[team][self:GetPartID()] = self
+	self:PostInitialize()
+end
+
 function ENT:DrawInfo(position, angle, scale)
 	if LocalPlayer():IsSpectator() then return end
 	local scale = scale or 0.25
@@ -27,4 +36,13 @@ function ENT:Draw()
 	local position = self:LocalToWorld( Vector( -25, -40, 25 ) )
 	local angle = self:GetAngles() - Angle(180, 180, 90)
 	self:DrawInfo(position, angle)
+end
+
+-- This is beeing called after effect was played
+function ENT:OnShoot()
+
+end
+
+function ENT:PostInitialize()
+
 end

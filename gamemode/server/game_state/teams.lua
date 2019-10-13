@@ -48,6 +48,7 @@ function player_meta:CreateAWTeam(team)
 		id = self:GetAWTeam()
 	}
 	AirWars:BroadcastGameState()
+	hook.Run("AirWars_TeamCreated", self, team)
 end
 
 function player_meta:JoinAWTeam(team)
@@ -55,6 +56,7 @@ function player_meta:JoinAWTeam(team)
 	self:SetAWTeam(team)
 	aw_add_to_team(team, self)
 	AirWars:BroadcastGameState()
+	hook.Run("AirWars_PlayerJoinedTeam", self, team)
 end
 
 -- Lua strings are 8-bit clean. So non-english characters can use more than 1 byte, which can cause incorrect result with such functions as Left

@@ -154,6 +154,7 @@ function AirWars:CreateShip(id)
 	ship.SyncPosition = sync_position
 	ship.SyncToPlayer = sync_to_player
 	world_ships[ship.id] = ship
+	hook.Run("AirWars_ShipCreated", id)
 	return world_ships[ship.id]
 end
 

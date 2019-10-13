@@ -5,7 +5,7 @@ aw_skyboxes = {
 	},
 	[2] = {
 		material = Material("aw_materials/skybox/skybox_02.png", ""),
-		brightness = 0.1
+		brightness = 0.3
 	}
 }
 game_state.skybox_id = 1

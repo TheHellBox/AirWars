@@ -1,7 +1,9 @@
 local trace_material = Material("cable/smoke")
+local hook_material = Material("cable/cable2")
 
 function aw_draw_particles(view)
 	for key, particle in pairs(aw_particles) do
+		local position = particle.position
 		local matrix = particle.matrix or Matrix()
 		matrix:Translate(particle.position)
 		matrix:Rotate(particle.angle)
@@ -19,10 +21,9 @@ end
 
 function draw_projectile(projectile, view)
 	render.SetColorMaterial()
-
 	local matrix = Matrix()
 	matrix:Translate(projectile.position)
-	matrix:Rotate(projectile.angle)
+	matrix:Rotate(projectile.angle + Angle(0, 90))
 
 	matrix = view * matrix
 
@@ -37,7 +38,30 @@ function draw_projectile(projectile, view)
 	render.SetColorModulation( 1, 1, 1 )
 end
 
+function draw_hook(projectile, view)
+	local ship = world_ships[projectile.ship_id]
+	if !ship then return end
+	local part = ship.parts[projectile.weapon]
+	if !part then return end
+
+	local start = calculate_part_position(ship, part.position, part.angle)
+	local start_mat = Matrix()
+	start_mat:Translate(start)
+	start_mat = view * start_mat
+
+	local end_mat = Matrix()
+	end_mat:Translate(projectile.position)
+	end_mat = view * end_mat
+
+	render.SetMaterial(hook_material)
+	render.DrawBeam(start_mat:GetTranslation(), end_mat:GetTranslation(), 3, 0, 1, Color(255, 255, 255))
+end
+
 function draw_trace(projectile, view)
+	if projectile.is_hook then
+		draw_hook(projectile, view)
+		return
+	end
 	if CurTime() > (projectile.tr_update_time or 0) then
 		projectile.prev_positions = projectile.prev_positions or {}
 		local new_vec = Vector()

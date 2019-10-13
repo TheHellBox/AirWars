@@ -91,4 +91,6 @@ function AirWars:SpawnShips()
 	end
 	AirWars:SpawnPlayers()
 	AirWars:SpawnIslands()
+
+	hook.Run("AirWars_ShipsSpawned")
 end

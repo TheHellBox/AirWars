@@ -1,3 +1,5 @@
+CreateClientConVar( "aw_music_enabled", "1", true, false )
+
 sound.Add( {
 	name = "wind_sound",
 	channel = CHAN_STATIC,
@@ -25,7 +27,14 @@ hook.Add("Think", "Wind Sound Update", function()
 end)
 
 hook.Add("Think", "Sound Track Update", function()
-	if (game_state_get_state() != GAME_STATE_FIGHT) and aw_soundtrack then
+	local aw_music_enabled = GetConVar( "aw_music_enabled" )
+	if aw_music_enabled then
+		aw_music_enabled = aw_music_enabled:GetBool()
+	else
+		aw_music_enabled = false
+	end
+	if ((game_state_get_state() != GAME_STATE_FIGHT) or !aw_music_enabled) and aw_soundtrack then
+
 		if aw_soundtrack:IsPlaying() then
 			aw_soundtrack:Stop()
 		end

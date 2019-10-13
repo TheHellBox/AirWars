@@ -23,9 +23,8 @@ local function draw(view, prop, ship, player)
 	local model = clientside_models[prop.model]
 	if model ~= nil then
 		if prop.sequence then
-			model:ResetSequence(prop.sequence)
+			model:SetCycle(CurTime() % 1)
 			model:SetSequence(prop.sequence)
-			model:SetCycle(CurTime())
 		end
 		model:EnableMatrix("RenderMultiply", matrix)
 		model:SetupBones()
@@ -65,7 +64,7 @@ function aw_draw_props(view)
 				model = crew_member:GetModel(),
 				position = crew_member:GetPos() + ship.center - global_config.world_center,
 				angle = Angle(0, crew_member:EyeAngles().y),
-				sequence = crew_member:GetSequence()
+				sequence = crew_member:GetSequenceName(crew_member:GetSequence())
 			}
 			draw(view, prop, ship, crew_member)
 		end
