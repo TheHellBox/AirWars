@@ -1,5 +1,6 @@
 hook.Add("ShouldCollide", "disable_prop_collisions", function(entity_a, entity_b )
 	if !entity_a.GetAWTeam or !entity_b.GetAWTeam then return end
+	if !entity_a.GetAWTeamRaw or !entity_b.GetAWTeamRaw then return end
 
 	local a_is_player = entity_a:IsPlayer()
 	local b_is_player = entity_b:IsPlayer()
