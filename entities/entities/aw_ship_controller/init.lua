@@ -22,6 +22,6 @@ end
 function ENT:OnRemove()
 	if IsValid(self:GetController()) then
 		self:GetController():ExitControl()
-		world_ships[self:GetAWTeam].velocity = Vector()
+		world_ships[self:GetAWTeam()].velocity = Vector()
 	end
 end
