@@ -8,28 +8,28 @@ function init_ship_controls()
 	}
 end
 
-hook.Add("PlayerButtonDown", "Ship Controls PBD", function(player, button)
-	local controller = player:GetEntityUnderControl()
+hook.Add("KeyPress", "Ship Controls PBD", function(ply, key)
+	local controller = ply:GetEntityUnderControl()
 	if !IsValid(controller) or controller:GetClass() != "aw_ship_controller" then return end
-	local player_ship = world_ships[player:GetCurrentShip()]
+	local player_ship = world_ships[ply:GetCurrentShip()]
 	if player_ship ~= nil then
-		player_ship.direction.controller_angle = player.controller_angle
-		if button == KEY_W then
+		player_ship.direction.controller_angle = ply.controller_angle
+		if key == IN_FORWARD then
 			player_ship.direction.direction.x = 1
 		end
-		if button == KEY_S then
+		if key == IN_BACK then
 			player_ship.direction.direction.x = -1
 		end
-		if button == KEY_A then
+		if key == IN_MOVELEFT then
 			player_ship.direction.angle.y = 1
 		end
-		if button == KEY_D then
+		if key == IN_MOVERIGHT then
 			player_ship.direction.angle.y = -1
 		end
-		if button == KEY_SPACE then
+		if key == IN_JUMP then
 			player_ship.direction.direction.z = 1
 		end
-		if button == KEY_LSHIFT then
+		if key == IN_SPEED then
 			player_ship.direction.direction.z = -1
 		end
 	end
@@ -39,31 +39,31 @@ hook.Add("Think", "Ships Jingle", function()
 
 end)
 
-hook.Add("PlayerButtonUp", "Ship Controls PBU", function(player, button)
-	local controller = player:GetEntityUnderControl()
+hook.Add("KeyRelease", "Ship Controls PBU", function(ply, key)
+	local controller = ply:GetEntityUnderControl()
 	if !IsValid(controller) or controller:GetClass() != "aw_ship_controller" then return end
-	local player_ship = world_ships[player:GetCurrentShip()]
+	local player_ship = world_ships[ply:GetCurrentShip()]
 	if player_ship ~= nil then
-		player_ship.direction.controller_angle = player.controller_angle
-		if button == KEY_W then
+		player_ship.direction.controller_angle = ply.controller_angle
+		if key == IN_FORWARD then
 			player_ship.direction.direction.x = 0
 		end
-		if button == KEY_S then
+		if key == IN_BACK then
 			player_ship.direction.direction.x = 0
 		end
-		if button == KEY_A then
+		if key == IN_MOVELEFT then
 			player_ship.direction.angle.y = 0
 		end
-		if button == KEY_D then
+		if key == IN_MOVERIGHT then
 			player_ship.direction.angle.y = 0
 		end
-		if button == KEY_LSHIFT then
+		if key == IN_SPEED then
 			player_ship.direction.direction.z = 0
 		end
-		if button == KEY_SPACE then
+		if key == IN_JUMP then
 			player_ship.direction.direction.z = 0
 		end
-		if button == KEY_R then
+		if key == IN_RELOAD then
 			if player:IsInControl() then
 				player:ExitControl()
 			end
