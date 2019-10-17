@@ -84,12 +84,12 @@ hook.Add( "HUDPaint", "Draw Controls", function()
 	if !LocalPlayer():IsInControl() then return end
 	local entity_under_control = LocalPlayer():GetNWEntity("aw_entity_under_control")
 	if entity_under_control:GetClass() != "aw_ship_controller" then return end
-	draw_key(10, tips_offset,  "W",  "Forward", false)
-	draw_key(10, tips_offset,  "A",  "Turn Left", false)
-	draw_key(10, tips_offset,  "S",  "Back", false)
-	draw_key(10, tips_offset,  "D",  "Turn Right", false)
-	draw_key(10, tips_offset,  "_",  "Go Up", false, 100)
-	draw_key(10, tips_offset,  "Shift",  "Go Down", false, 100)
+	draw_key(10, tips_offset,  input.LookupBinding( "+forward" ),  "Forward", false)
+	draw_key(10, tips_offset,  input.LookupBinding( "+fmoveleft" ),  "Turn Left", false)
+	draw_key(10, tips_offset,  input.LookupBinding( "+back" ),  "Back", false)
+	draw_key(10, tips_offset,  input.LookupBinding( "+moveright" ),  "Turn Right", false)
+	draw_key(10, tips_offset,  input.LookupBinding( "+jump" ),  "Go Up", false, 100)
+	draw_key(10, tips_offset,  input.LookupBinding( "+speed" ),  "Go Down", false, 100)
 
 	local height = 0
 	tips_offset = 10
@@ -103,7 +103,7 @@ end )
 hook.Add( "HUDPaint", "Draw Exit", function()
 	if !LocalPlayer():IsInControl() then return end
 	tips_offset = 10
-	draw_key(10, tips_offset,  "R",  "Exit", false)
+	draw_key(10, tips_offset,  input.LookupBinding( "+reload" ),  "Exit", false)
 end )
 
 hook.Add( "HUDPaint", "HightlightUse", function()
@@ -119,6 +119,6 @@ hook.Add( "HUDPaint", "HightlightUse", function()
 	end
 	trace = util.TraceLine(trace)
 	if IsValid(trace.Entity) and trace.Entity.Useable then
-		draw_key(ScrW() / 2 - 25, ScrH() / 2 - 25,  "E",  trace.Entity.CustomText or "Use", false)
+		draw_key(ScrW() / 2 - 25, ScrH() / 2 - 25,  input.LookupBinding( "+use" ),  trace.Entity.CustomText or "Use", false)
 	end
 end )
