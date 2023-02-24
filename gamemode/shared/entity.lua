@@ -10,7 +10,7 @@ function meta:SetAmmoAmount(amount)
 end
 
 function meta:GetAWTeam()
-	if CLIENT then return self:GetAWTeamRaw() or 0 end
+	if CLIENT then return (self.GetAWTeamRaw and self:GetAWTeamRaw()) or 0 end
 	return self.aw_team
 end
 
